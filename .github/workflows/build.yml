@@ -1,0 +1,36 @@
+name: Publish NPM Package
+
+on:
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: "https://registry.npmjs.org/"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project
+        run: node build.js
+
+      - name: Get Package Version
+        id: package_version
+        run: echo "VERSION=$(node -p 'require("./package.json").version')" >> $GITHUB_ENV
+
+      - name: Publish Package
+        run: |
+          cd build
+          echo "Publishing version $VERSION"
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
