@@ -27,6 +27,9 @@ jobs:
         id: package_version
         run: echo "VERSION=$(node -p 'require("./package.json").version')" >> $GITHUB_ENV
 
+      - name: Copy Package.json to Build Folder
+        run: cp package.json build/
+
       - name: Publish Package
         run: |
           cd build
