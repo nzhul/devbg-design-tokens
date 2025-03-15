@@ -1,6 +1,6 @@
 {
   "name": "@nzhul/devbg-design-tokens",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A centralized collection of design tokens for consistent styling across projects. This repository includes color palettes, typography, spacing, and other design system assets generated using Figma's Token Studio Plugin. Ideal for use in React and Material UI-based applications, with support for customization and scalability.",
   "type": "module",
   "main": "tokens.json",
